@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ex04_Pessoas
+{
+    internal class Pessoa
+    {
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public int Idade { get; set; }
+        public string Email { get; set; }
+
+        public Pessoa() { }
+
+        public Pessoa(int id, string nome, int idade, string email)
+        {
+            Id = id;
+            Nome = nome;
+            Idade = idade;
+            Email = email;
+        }
+
+        public override string ToString()
+        {
+            return $"{Id} | {Nome} | {Idade} | {Email}";
+        }
+    }
+}
