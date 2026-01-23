@@ -11,20 +11,12 @@
       "RelativeMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|solutionrelative:eventotecnologia\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|c:\\users\\esen\\onedrive - escola secund\u00E1ria de em\u00EDdio navarro de viseu\\ambiente de trabalho\\escola\\11\u00BA ano\\prog\\mod11\\eventostecnologia\\eventotecnologia\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|solutionrelative:eventotecnologia\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|c:\\users\\esen\\onedrive - escola secund\u00E1ria de em\u00EDdio navarro de viseu\\ambiente de trabalho\\escola\\11\u00BA ano\\prog\\mod11\\eventostecnologia\\eventotecnologia\\frmparticipante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|solutionrelative:eventotecnologia\\frmparticipante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|c:\\users\\esen\\onedrive - escola secund\u00E1ria de em\u00EDdio navarro de viseu\\ambiente de trabalho\\escola\\11\u00BA ano\\prog\\mod11\\eventostecnologia\\eventotecnologia\\dados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|solutionrelative:eventotecnologia\\dados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|c:\\users\\esen\\onedrive - escola secund\u00E1ria de em\u00EDdio navarro de viseu\\ambiente de trabalho\\escola\\11\u00BA ano\\prog\\mod11\\eventostecnologia\\eventotecnologia\\participante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|solutionrelative:eventotecnologia\\participante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|c:\\users\\esen\\onedrive - escola secund\u00E1ria de em\u00EDdio navarro de viseu\\ambiente de trabalho\\escola\\11\u00BA ano\\prog\\mod11\\eventostecnologia\\eventotecnologia\\evento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|solutionrelative:eventotecnologia\\evento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|c:\\users\\esen\\onedrive - escola secund\u00E1ria de em\u00EDdio navarro de viseu\\ambiente de trabalho\\escola\\11\u00BA ano\\prog\\mod11\\eventostecnologia\\eventotecnologia\\frmparticipante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6744800-436F-4002-A3C6-6240DBC7DB79}|EventoTecnologia\\EventoTecnologia.csproj|solutionrelative:eventotecnologia\\frmparticipante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,8 +26,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmParticipante.cs",
+              "DocumentMoniker": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\frmParticipante.cs",
+              "RelativeDocumentMoniker": "EventoTecnologia\\frmParticipante.cs",
+              "ToolTip": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\frmParticipante.cs",
+              "RelativeToolTip": "EventoTecnologia\\frmParticipante.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAswBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T08:51:07.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmParticipante.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\frmParticipante.cs",
+              "RelativeDocumentMoniker": "EventoTecnologia\\frmParticipante.cs",
+              "ToolTip": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\frmParticipante.cs [Design]",
+              "RelativeToolTip": "EventoTecnologia\\frmParticipante.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T08:45:12.644Z",
+              "EditorCaption": " [Design]"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -44,7 +61,7 @@
               "RelativeDocumentMoniker": "EventoTecnologia\\frmPrincipal.cs",
               "ToolTip": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\frmPrincipal.cs",
               "RelativeToolTip": "EventoTecnologia\\frmPrincipal.cs",
-              "ViewState": "AgIAACgBAAAAAAAAAAAqwCgBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAiwK8AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-16T09:27:11.337Z",
               "EditorCaption": ""
@@ -60,57 +77,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-16T09:27:00.531Z",
               "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\Program.cs",
-              "RelativeDocumentMoniker": "EventoTecnologia\\Program.cs",
-              "ToolTip": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\Program.cs",
-              "RelativeToolTip": "EventoTecnologia\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T09:26:50.333Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Participante.cs",
-              "DocumentMoniker": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\Participante.cs",
-              "RelativeDocumentMoniker": "EventoTecnologia\\Participante.cs",
-              "ToolTip": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\Participante.cs",
-              "RelativeToolTip": "EventoTecnologia\\Participante.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAAwFMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T09:26:45.969Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Evento.cs",
-              "DocumentMoniker": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\Evento.cs",
-              "RelativeDocumentMoniker": "EventoTecnologia\\Evento.cs",
-              "ToolTip": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\Evento.cs",
-              "RelativeToolTip": "EventoTecnologia\\Evento.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T09:26:36.459Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Dados.cs",
-              "DocumentMoniker": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\Dados.cs",
-              "RelativeDocumentMoniker": "EventoTecnologia\\Dados.cs",
-              "ToolTip": "C:\\Users\\ESEN\\OneDrive - Escola Secund\u00E1ria de Em\u00EDdio Navarro de Viseu\\Ambiente de Trabalho\\Escola\\11\u00BA Ano\\Prog\\MOD11\\EventosTecnologia\\EventoTecnologia\\Dados.cs",
-              "RelativeToolTip": "EventoTecnologia\\Dados.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAiwCIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T09:26:31.284Z",
-              "EditorCaption": ""
             }
           ]
         }

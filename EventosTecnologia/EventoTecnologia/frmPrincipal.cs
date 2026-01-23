@@ -80,23 +80,22 @@ namespace EventoTecnologia
 
         private void btnInscrever_Click(object sender, EventArgs e)
         {
-            if (Dados.evento.part.Count >= nudMaxPart.Value)
+            if (Dados.evento.part.Count >= (int)nudMaxPart.Value)
             {
-                MessageBox.Show("Não pode inscrever mais participantes pois exede a capacidade maxima do evento");
+                MessageBox.Show("Não pode inscrever mais participantes pois exede a capacidade maxima do evento", 
+                    Dados.appNome, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            frmParticipante form = new frmParticipante(null);
-
-            DialogResult res = form.ShowDialog();
-
-            if (res == DialogResult.OK)
+            using (frmParticipante form = new frmParticipante(null))
             {
-                Dados.evento.part.Add(form.Part);
-                MessageBox.Show("Novo participante adicionado com sucesso", Dados.appNome, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Dados.evento.part.Add(form.Part);
+                    MessageBox.Show("Novo participante adicionado com sucesso", Dados.appNome, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    AtualNPart();
+                }
             }
-
-            AtualNPart();
         }
 
         private void btnRemover_Click(object sender, EventArgs e)
@@ -165,6 +164,20 @@ namespace EventoTecnologia
             AtualNPart();
         }
 
+        private void ConfirmarERemover(Participante participante)
+        {
+            string msg = $"Deseja remover o participante {participante.Nome}?";
+
+            DialogResult resultado = MessageBox.Show(msg, Dados.appNome, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                Dados.evento.part.Remove(participante);
+                AtualNPart();
+            }
+        }
+
+
         private void updateChkEditar(bool chk)
         {
             txtNome.Enabled = chk;
@@ -172,6 +185,8 @@ namespace EventoTecnologia
             nudMaxPart.Enabled = chk;
             btnInscrever.Enabled = chk;
             btnRemover.Enabled = chk;
+            btnEditar.Enabled = chk;
+            btnRemoverEvento.Enabled = chk;
         }
 
         private void chkEditar_CheckedChanged(object sender, EventArgs e)
@@ -179,7 +194,7 @@ namespace EventoTecnologia
             updateChkEditar(chkEditar.Checked);
         }
 
-        private void UltrapassouData()
+        private void dtpData_ValueChanged(object sender, EventArgs e)
         {
             // Se o evento já passou
             if (dtpData.Value.Date < DateTime.Today)
@@ -200,11 +215,6 @@ namespace EventoTecnologia
             }
         }
 
-        private void dtpData_ValueChanged(object sender, EventArgs e)
-        {
-            UltrapassouData();
-        }
-
         private void btnSobre_Click(object sender, EventArgs e)
         {
             frmSobre form = new frmSobre();
@@ -223,85 +233,68 @@ namespace EventoTecnologia
             if (nudMaxPart.Value < linhas)
             {
                 nudMaxPart.Value = linhas;
-                // MessageBox.Show( "O valor não pode ser menor que o número de registos.", "Valor inválido");
+                MessageBox.Show("O valor não pode ser menor que o número de registos.", "Valor inválido");
             }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (dgvDados.Rows.Count > 0)
+            if (Dados.evento.part.Count == 0)
             {
-                Participante dados = GetAtualDataRown();
+                MessageBox.Show("Não existem participantes para editar.", Dados.appNome, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                //Se estiver algum selecionado
-                if (dados != null)
+            Participante participante = GetAtualDataRown();
+
+            if (participante == null)
+            {
+                string email = Interaction.InputBox("Introduza o email do participante que deseja editar:", "Editar a partir do email");
+
+                if (string.IsNullOrWhiteSpace(email))
+                    return;
+
+                if (!Participante.IsValidEmail(email))
                 {
-                    int selecionado = Dados.evento.part.IndexOf(dados);
-
-                    frmParticipante form = new frmParticipante(null);
-
-                    //Adicionar os valores do participante ao formulario
-
-                    DialogResult res = form.ShowDialog();
-
-                    if (res == DialogResult.OK)
-                    {
-                        Dados.evento.part.RemoveAt(selecionado);
-                        Dados.evento.part.Add(form.Part);
-                        MessageBox.Show("Participante editado com sucesso", Dados.appNome, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    MessageBox.Show("Email inválido.");
+                    return;
                 }
 
-                else
+                int encontrado = -1;
+
+                for (int i = 0; i < Dados.evento.part.Count; i++)
                 {
-                    string Pergunta = "Introduza o email do participante que deseja editar:";
-                    string email = Interaction.InputBox(Pergunta, "Editar a partir do email");
-
-                    if (email == "")
-                        return;
-
-                    if (Participante.IsValidEmail(email))
+                    if (Dados.evento.part[i].Email == email)
                     {
-                        int encontrado = -1;
-
-                        for (int i = 0; i < Dados.evento.part.Count; i++)
-                        {
-                            if (Dados.evento.part[i].Email == email)
-                            {
-                                encontrado = i;
-                                break;
-                            }
-                        }
-
-                        if (encontrado != -1)
-                        {
-                            int selecionado = Dados.evento.part.IndexOf(dados);
-
-                            frmParticipante form = new frmParticipante(null);
-
-                            //Adicionar os valores do participante ao formulario
-
-                            DialogResult res = form.ShowDialog();
-
-                            if (res == DialogResult.OK)
-                            {
-                                Dados.evento.part.RemoveAt(selecionado);
-                                Dados.evento.part.Add(form.Part);
-                                MessageBox.Show("Participante editado com sucesso", Dados.appNome, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        }
-
-                        else
-                            MessageBox.Show("O email inserido não pertence a nenhum participante");
+                        participante = Dados.evento.part[i];
+                        break;
                     }
-
-                    else
-                        MessageBox.Show("Email inválido.");
                 }
             }
 
-            else
-                MessageBox.Show("Não existem participantes para editar.", Dados.appNome, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            EditarParticipante(participante);
+        }
+
+        private void EditarParticipante(Participante participante)
+        {
+            int index = Dados.evento.part.IndexOf(participante);
+
+            frmParticipante form = new frmParticipante(participante);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                Dados.evento.part[index] = form.Part;
+                MessageBox.Show("Participante editado com sucesso", Dados.appNome, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void dgvDados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ignora clique no header
+            if (e.RowIndex < 0)
+                return;
+
+            btnEditar_Click(sender, EventArgs.Empty);
         }
     }
 }

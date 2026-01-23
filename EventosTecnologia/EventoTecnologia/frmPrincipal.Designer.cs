@@ -147,6 +147,7 @@
             dgvDados.Name = "dgvDados";
             dgvDados.Size = new Size(439, 150);
             dgvDados.TabIndex = 6;
+            dgvDados.CellDoubleClick += dgvDados_CellDoubleClick;
             // 
             // nudMaxPart
             // 

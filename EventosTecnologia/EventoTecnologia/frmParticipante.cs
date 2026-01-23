@@ -18,6 +18,13 @@ namespace EventoTecnologia
         {
             InitializeComponent();
 
+            if (_part != null)
+            {
+                txtNome.Text = _part.Nome;
+                txtEmail.Text = _part.Email;
+                nudIdade.Value = _part.Idade;
+            }
+
             Part = _part;
 
             // Se clicar ENTER ou no botão OK, assume a ação OK
