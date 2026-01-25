@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json;
 using System.Windows.Forms;
 using static System.Windows.Forms.LinkLabel;
@@ -85,8 +86,14 @@ namespace Ex04_Pessoas
 
         private void btnLerT_Click(object sender, EventArgs e)
         {
-            //Ler ficheiro TXT
             dgvPessoas.Rows.Clear();
+
+            //Ler ficheiro TXT
+            if (!File.Exists("Pessoas.txt"))
+            {
+                MessageBox.Show("O ficheiro Pessoas.txt não existe!");
+                return;
+            }
 
             try
             {
@@ -99,7 +106,6 @@ namespace Ex04_Pessoas
                     {
                         //Separar campos
                         string[] dados = linha.Split(" | ");
-
                         dgvPessoas.Rows.Add(int.Parse(dados[0]), dados[1], int.Parse(dados[2]), dados[3]);
                     }
                 }
@@ -107,7 +113,7 @@ namespace Ex04_Pessoas
 
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao ler ficheiro: " + ex.Message);
+                MessageBox.Show("Erro ao ler ficheiro TXT: " + ex.Message);
             }
         }
 
@@ -147,14 +153,14 @@ namespace Ex04_Pessoas
 
         private void btnLerJ_Click(object sender, EventArgs e)
         {
-            //Ler ficheiro JSON
             dgvPessoas.Rows.Clear();
 
+            //Ler ficheiro JSON
             try
             {
                 if (!File.Exists("Pessoas.json"))
                 {
-                    MessageBox.Show("Nenhum ficheiro encontrado.");
+                    MessageBox.Show("Nenhum ficheiro JSON encontrado.");
                     return;
                 }
 
@@ -164,16 +170,14 @@ namespace Ex04_Pessoas
 
                     foreach (Pessoa p in listaPessoas)
                     {
-                        string[] dados = p.ToString().Split(" | ");
-
-                        dgvPessoas.Rows.Add(int.Parse(dados[0]), dados[1], int.Parse(dados[2]), dados[3]);
+                        dgvPessoas.Rows.Add(p.Id, p.Nome, p.Idade, p.Email);
                     }
                 }
             }
 
             catch (Exception ex)
             {
-                MessageBox.Show("Erro: " + ex.Message);
+                MessageBox.Show("Erro ao ler ficheiro JSON: " + ex.Message);
             }
         }
 
@@ -207,12 +211,9 @@ namespace Ex04_Pessoas
 
                 foreach (Pessoa p in listaPessoas)
                 {
-                    string[] dados = p.ToString().Split(" | ");
-                    int idade = int.Parse(dados[2]);
-
-                    if (idade >= 18)
+                    if (p.Idade >= 18)
                     {
-                        dgvPessoas.Rows.Add(int.Parse(dados[0]), dados[1], int.Parse(dados[2]), dados[3]);
+                        dgvPessoas.Rows.Add(p.Id, p.Nome, p.Idade, p.Email);
                     }
                 }
             }
@@ -226,7 +227,7 @@ namespace Ex04_Pessoas
             {
                 if (!File.Exists("Pessoas.txt"))
                 {
-                    MessageBox.Show("Ficheiro TXT não existe!");
+                    MessageBox.Show("Nenhum ficheiro TXT encontrado.");
                     return;
                 }
 
@@ -267,7 +268,7 @@ namespace Ex04_Pessoas
             {
                 if (!File.Exists("Pessoas.json"))
                 {
-                    MessageBox.Show("Ficheiro JSON não existe!");
+                    MessageBox.Show("Nenhum ficheiro JSON encontrado.");
                     return;
                 }
 
@@ -284,9 +285,7 @@ namespace Ex04_Pessoas
                     {
                         sw.WriteLine(p.ToString());
 
-                        string[] dados = p.ToString().Split(" | ");
-
-                        dgvPessoas.Rows.Add(int.Parse(dados[0]), dados[1], int.Parse(dados[2]), dados[3]);
+                        dgvPessoas.Rows.Add(p.Id, p.Nome, p.Idade, p.Email);
                     }
                 }
 
@@ -303,6 +302,9 @@ namespace Ex04_Pessoas
         {
             dgvPessoas.Rows.Clear();
 
+            if (!File.Exists("Pessoas.json"))
+                return;
+
             try
             {
                 using (FileStream fs = new FileStream("Pessoas.json", FileMode.Open))
@@ -311,14 +313,15 @@ namespace Ex04_Pessoas
 
                     foreach (Pessoa p in listaPessoas)
                     {
-                        string[] dados = p.ToString().Split(" | ");
-
-                        dgvPessoas.Rows.Add(int.Parse(dados[0]), dados[1], int.Parse(dados[2]), dados[3]);
+                        dgvPessoas.Rows.Add(p.Id, p.Nome, p.Idade, p.Email);
                     }
                 }
             }
 
-            catch (Exception ex) { }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Erro ao carregar JSON: " + ex.Message);
+            }
         }
     }
 }
