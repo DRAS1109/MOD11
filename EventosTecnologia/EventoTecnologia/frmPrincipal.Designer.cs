@@ -181,7 +181,7 @@
             btnSobre.Name = "btnSobre";
             btnSobre.Size = new Size(75, 23);
             btnSobre.TabIndex = 8;
-            btnSobre.Text = "&Sobre";
+            btnSobre.Text = "Sobre";
             btnSobre.UseVisualStyleBackColor = true;
             btnSobre.Click += btnSobre_Click;
             // 
@@ -209,7 +209,7 @@
             btnRemoverEvento.Name = "btnRemoverEvento";
             btnRemoverEvento.Size = new Size(100, 50);
             btnRemoverEvento.TabIndex = 14;
-            btnRemoverEvento.Text = "&Remover Evento";
+            btnRemoverEvento.Text = "Remover Evento";
             btnRemoverEvento.UseVisualStyleBackColor = true;
             // 
             // frmPrincipal

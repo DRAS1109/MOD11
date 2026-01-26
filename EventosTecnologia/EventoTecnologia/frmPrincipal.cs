@@ -62,6 +62,9 @@ namespace EventoTecnologia
             dgvDados.Columns["Idade"].DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8.25F);
             dgvDados.Columns["Email"].DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8.25F);
 
+            // Guarda a tecla que o utilizador clicou
+            //this.KeyPreview = true;
+
             AtualNPart();
         }
 
@@ -75,7 +78,11 @@ namespace EventoTecnologia
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult resultado = MessageBox.Show("Deseja sair da aplicação?", Dados.appNome, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (resultado == DialogResult.Yes)
+                Application.Exit();
+
+            return;
         }
 
         private void btnInscrever_Click(object sender, EventArgs e)
@@ -100,68 +107,51 @@ namespace EventoTecnologia
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            if (dgvDados.Rows.Count > 0)
+            if (Dados.evento.part.Count == 0)
             {
-                Participante dados = GetAtualDataRown();
-
-                //Se estiver algum selecionado
-                if (dados != null)
-                {
-                    int selecionado = Dados.evento.part.IndexOf(dados);
-                    string msg = "Deseja remover o participante " + dados.Nome + "?";
-
-                    DialogResult resultado = MessageBox.Show(msg, Dados.appNome, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (resultado == DialogResult.Yes)
-                        Dados.evento.part.RemoveAt(selecionado);
-                }
-
-                else
-                {
-                    string Pergunta = "Introduza o email do participante que deseja remover:";
-                    string email = Interaction.InputBox(Pergunta, "Remover a partir do email");
-
-                    if (email == "")
-                        return;
-
-                    if (Participante.IsValidEmail(email))
-                    {
-                        int encontrado = -1;
-
-                        for (int i = 0; i < Dados.evento.part.Count; i++)
-                        {
-                            if (Dados.evento.part[i].Email == email)
-                            {
-                                encontrado = i;
-                                break;
-                            }
-                        }
-
-                        if (encontrado != -1)
-                        {
-                            Console.WriteLine("E-mail encontrado!");
-
-                            string msg = "Deseja remover o participante " + Dados.evento.part[encontrado].Nome + "?";
-
-                            DialogResult resultado = MessageBox.Show(msg, Dados.appNome, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                            if (resultado == DialogResult.Yes)
-                                Dados.evento.part.RemoveAt(encontrado);
-                        }
-
-                        else
-                            MessageBox.Show("O email inserido não pertence a nenhum participante");
-                    }
-
-                    else
-                        MessageBox.Show("Email inválido.");
-                }
+                MessageBox.Show("Não existem participantes para remover.", Dados.appNome, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            else
-                MessageBox.Show("Não existem participantes para remover.", Dados.appNome, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            Participante participante = GetAtualDataRown();
 
-            AtualNPart();
+            if (participante == null)
+            {
+                string email = Interaction.InputBox("Introduza o email do participante que deseja remover:",
+                    "Remover a partir do email");
+
+                if (email == "")
+                    return;
+
+                if (!Participante.IsValidEmail(email))
+                {
+                    MessageBox.Show("Email inválido.");
+                    return;
+                }
+
+
+                if (Participante.IsValidEmail(email))
+                {
+                    bool encontrado = false;
+
+                    for (int i = 0; i < Dados.evento.part.Count; i++)
+                    {
+                        if (Dados.evento.part[i].Email == email)
+                        {
+                            participante = Dados.evento.part[i];
+                            encontrado = true;
+                            break;
+                        }
+                    }
+
+                    if (!encontrado)
+                    {
+                        MessageBox.Show("O email inserido não pertence a nenhum participante");
+                        return;
+                    }
+                }
+            }
+            ConfirmarERemover(participante);
         }
 
         private void ConfirmarERemover(Participante participante)
@@ -176,7 +166,6 @@ namespace EventoTecnologia
                 AtualNPart();
             }
         }
-
 
         private void updateChkEditar(bool chk)
         {
