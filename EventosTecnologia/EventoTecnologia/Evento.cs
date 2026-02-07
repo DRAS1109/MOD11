@@ -8,13 +8,32 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace EventoTecnologia
 {
-    public class Evento
+    /* INotifyPropertyChanged retirado de https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged?view=net-10.0
+     * da classe public class DemoCustomer : INotifyPropertyChanged */
+    public class Evento : INotifyPropertyChanged // Serve para notificar quando uma propriedade de um objeto muda
     {
-        public BindingList<Participante> part { get; private set; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public const int CAPACIDADE_MIN = 1;
-        public string Nome { get; set; }
+        private void OnPropertyChanged(string prop)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public BindingList<Participante> part { get; set; }
+
+        public const int CAPACIDADE_MIN = 2;
         public DateTime Data { get; set; }
+
+        string nome;
+        public string Nome 
+        { 
+            get { return nome; }
+            set
+            {
+                nome = value;
+                OnPropertyChanged(nameof(Nome));
+            }
+        }
 
 
         int capacidadeMax;
@@ -30,12 +49,20 @@ namespace EventoTecnologia
             }
         }
 
+        public Localizacao Local { get; set; }
 
-        public Evento(string _nome, DateTime _data, int _capacidadeMax)
+        public Evento() 
+        {
+            Local = new Localizacao();
+            part = new BindingList<Participante>();
+        }
+
+        public Evento(string _nome, DateTime _data, int _capacidadeMax, Localizacao _localizacaoAtual)
         {
             Nome = _nome;
             Data = _data;
             CapacidadeMax = _capacidadeMax;
+            Local = _localizacaoAtual;
 
             part = new BindingList<Participante>();
         }
@@ -44,7 +71,7 @@ namespace EventoTecnologia
         {
             bool valido = true;
 
-            if (capacidade < 1)
+            if (capacidade < 2)
             {
                 valido = false;
             }

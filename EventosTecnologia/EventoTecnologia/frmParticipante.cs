@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace EventoTecnologia
 {
@@ -18,14 +19,24 @@ namespace EventoTecnologia
         {
             InitializeComponent();
 
-            if (_part != null)
+            Part = _part;
+
+            if (Part == null)
             {
-                txtNome.Text = _part.Nome;
-                txtEmail.Text = _part.Email;
-                nudIdade.Value = _part.Idade;
+                lblID.Visible = false;
+                txtID.Visible = false;
             }
 
-            Part = _part;
+            if (Part != null)
+            {
+                txtID.Text = Part.ID.ToString();
+                txtNome.Text = Part.Nome;
+                txtEmail.Text = Part.Email;
+                nudIdade.Value = Part.Idade;
+
+                if (Part is ParticipanteVIP)
+                    chkVIP.Checked = true;
+            }
 
             // Se clicar ENTER ou no botão OK, assume a ação OK
             AcceptButton = btnOk;
@@ -43,40 +54,114 @@ namespace EventoTecnologia
         // Botão Ok
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (txtNome.Text != "" && txtEmail.Text != "")
-            {
-                Participante p;
+            if (ValidarDados() == false)
+                return;
 
-                if (nudIdade.Value != 0)
-                    p = new Participante(txtNome.Text, (int)nudIdade.Value, txtEmail.Text);
+            Participante p;
+
+            // Verificar se já existe um VIP e pegar benefícios atuais
+            string beneficiosAtuais = "";
+
+            if (Part is ParticipanteVIP vip)
+            {
+                beneficiosAtuais = vip.Beneficios;
+            }
+
+            if (txtID.Text == "")
+            {
+                if (chkVIP.Checked)
+                {
+
+                    // Pedir benefícios
+                    string beneficios = Microsoft.VisualBasic.Interaction.InputBox(
+                        "Indique os benefícios do participante VIP:", "Benefícios VIP", beneficiosAtuais);
+
+                    if (nudIdade.Value != 0)
+                        p = new ParticipanteVIP(txtNome.Text, (int)nudIdade.Value, txtEmail.Text, beneficios);
+
+                    else
+                        p = new ParticipanteVIP(txtNome.Text, txtEmail.Text, beneficios);
+                }
 
                 else
-                    p = new Participante(txtNome.Text, txtEmail.Text);
-
-                // Verificações
-                if (p.IdadeValida == false)
                 {
-                    MessageBox.Show("Idade inválida, deve ser maior ou igual a 16 anos");
-                    return;
-                }
+                    if (nudIdade.Value != 0)
+                        p = new Participante(txtNome.Text, (int)nudIdade.Value, txtEmail.Text);
 
-                if (p.EmailValido == false)
-                {
-                    MessageBox.Show("Email inválido");
-                    return;
+                    else
+                        p = new Participante(txtNome.Text, txtEmail.Text);
                 }
-
-                // Adiciona o novo participante e volta ao forms principal
-                Part = p;
-                this.DialogResult = DialogResult.OK;
-                this.Close();
             }
 
             else
             {
-                MessageBox.Show("Deve preencher todos os dados");
-                return;
+                if (chkVIP.Checked)
+                {
+                    // Pedir benefícios
+                    string beneficios = Microsoft.VisualBasic.Interaction.InputBox(
+                        "Indique os benefícios do participante VIP:", "Benefícios VIP", beneficiosAtuais);
+
+                    if (nudIdade.Value != 0)
+                        p = new ParticipanteVIP(int.Parse(txtID.Text), txtNome.Text, (int)nudIdade.Value, txtEmail.Text, beneficios);
+
+                    else
+                        p = new ParticipanteVIP(int.Parse(txtID.Text), txtNome.Text, txtEmail.Text, beneficios);
+                }
+
+                else
+                {
+                    if (nudIdade.Value != 0)
+                        p = new Participante(int.Parse(txtID.Text), txtNome.Text, (int)nudIdade.Value, txtEmail.Text);
+
+                    else
+                        p = new Participante(int.Parse(txtID.Text), txtNome.Text, txtEmail.Text);
+                } 
             }
+
+            // Adiciona o novo participante e volta ao forms principal
+            Part = p;
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private bool ValidarDados()
+        {
+            bool valido = true;
+
+            errorProvider.Clear();
+
+            // Nome
+            if (string.IsNullOrWhiteSpace(txtNome.Text))
+            {
+                errorProvider.SetError(txtNome, "Deve preencher o nome do participante.");
+                valido = false;
+            }
+
+            // Email vazio
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                errorProvider.SetError(txtEmail,"Deve preencher o email.");
+                valido = false;
+            }
+            else if (!Participante.IsValidEmail(txtEmail.Text))
+            {
+                errorProvider.SetError(txtEmail,"Introduza um email válido.");
+                valido = false;
+            }
+
+            // Idade
+            if (nudIdade.Value < 16 && nudIdade.Value != 0)
+            {
+                errorProvider.SetError(nudIdade,"A idade deve ser maior ou igual a 16 anos.");
+                valido = false;
+            }
+
+            return valido;
+        }
+
+        private void frmParticipante_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
